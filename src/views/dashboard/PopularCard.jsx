@@ -16,7 +16,7 @@ import Typography from '@mui/material/Typography';
 import BajajAreaChartCard from './BajajAreaChartCard';
 import MainCard from 'ui-component/cards/MainCard';
 import SkeletonPopularCard from 'ui-component/cards/Skeleton/PopularCard';
-import { gridSpacing } from 'store/constant';
+import { gridSpacing } from 'store/customization/constant';
 
 // assets
 import ChevronRightOutlinedIcon from '@mui/icons-material/ChevronRightOutlined';

@@ -1,31 +1,22 @@
 // assets
-import { IconBrandChrome, IconHelp } from '@tabler/icons-react';
+import { IconSettings } from '@tabler/icons-react';
 
 // constant
-const icons = { IconBrandChrome, IconHelp };
+const icons = { IconSettings };
 
 // ==============================|| SAMPLE PAGE & DOCUMENTATION MENU ITEMS ||============================== //
 
 const other = {
-  id: 'sample-docs-roadmap',
+  id: 'settings',
   type: 'group',
   children: [
     {
-      id: 'sample-page',
-      title: 'Sample Page',
+      id: 'System-Settings',
+      title: 'System Settings',
       type: 'item',
-      url: '/sample-page',
-      icon: icons.IconBrandChrome,
+      url: '/system-settings',
+      icon: icons.IconSettings,
       breadcrumbs: false
-    },
-    {
-      id: 'documentation',
-      title: 'Documentation',
-      type: 'item',
-      url: 'https://codedthemes.gitbook.io/berry/',
-      icon: icons.IconHelp,
-      external: true,
-      target: true
     }
   ]
 };

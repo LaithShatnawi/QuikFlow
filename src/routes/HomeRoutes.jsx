@@ -4,14 +4,18 @@ import { lazy } from 'react';
 import HomeLayout from 'layout/HomeLayout';
 import Loadable from 'ui-component/Loadable';
 
-const Home = Loadable(lazy(() => import('../views/pages/home')));
+const Home = Loadable(lazy(() => import('../views/home')));
 
 const HomeRoutes = {
   path: '/',
   element: <HomeLayout />,
   children: [
     {
-      path: '/home',
+      path: '/',
+      element: <Home />
+    },
+    {
+      path: 'home',
       element: <Home />
     }
   ]

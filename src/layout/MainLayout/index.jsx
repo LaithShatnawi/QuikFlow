@@ -13,8 +13,8 @@ import Header from './Header';
 import Sidebar from './Sidebar';
 import Customization from '../Customization';
 import Breadcrumbs from 'ui-component/extended/Breadcrumbs';
-import { SET_MENU } from 'store/actions';
-import { drawerWidth } from 'store/constant';
+import { SET_MENU } from 'store/customization/actions';
+import { drawerWidth } from 'store/customization/constant';
 
 // assets
 import { IconChevronRight } from '@tabler/icons-react';

@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
@@ -27,18 +26,13 @@ import AnimateButton from 'ui-component/extended/AnimateButton';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
-import { useDispatch } from 'react-redux';
-import { login } from 'store/authentication/authactions';
+import { Link } from 'react-router-dom';
 
-// ============================|| FIREBASE - LOGIN ||============================ //
-
-const AuthLogin = ({ ...others }) => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
+const CreateProject = () => {
   const theme = useTheme();
   const [checked, setChecked] = useState(true);
-  const [showPassword, setShowPassword] = useState(false);
 
+  const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
   };
@@ -48,7 +42,8 @@ const AuthLogin = ({ ...others }) => {
   };
 
   return (
-    <>
+    <div>
+      {' '}
       <Formik
         initialValues={{
           email: '',
@@ -59,26 +54,11 @@ const AuthLogin = ({ ...others }) => {
           email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
           password: Yup.string().max(255).required('Password is required')
         })}
-        onSubmit={async (values, { setErrors, setSubmitting }) => {
-          try {
-            await dispatch(login(values.email, values.password));
-
-            //navigate to the corresponding dashboard
-            navigate(`/dashboard/${'organization-1'}/overview`);
-          } catch (error) {
-            // Handle login failure
-            setErrors({ submit: error || 'Something went wrong!' });
-          } finally {
-            setSubmitting(false);
-          }
-        }}
       >
         {({ errors, handleBlur, handleChange, handleSubmit, isSubmitting, touched, values }) => (
-          <form noValidate onSubmit={handleSubmit} {...others}>
+          <form noValidate onSubmit={handleSubmit}>
             <FormControl fullWidth error={Boolean(touched.email && errors.email)} sx={{ ...theme.typography.customInput }}>
-              <InputLabel htmlFor="outlined-adornment-email-login" color="secondary">
-                Email Address
-              </InputLabel>
+              <InputLabel htmlFor="outlined-adornment-email-login">Email Address / Username</InputLabel>
               <OutlinedInput
                 id="outlined-adornment-email-login"
                 type="email"
@@ -86,11 +66,9 @@ const AuthLogin = ({ ...others }) => {
                 name="email"
                 onBlur={handleBlur}
                 onChange={handleChange}
-                label="Email Address"
+                label="Email Address / Username"
                 inputProps={{}}
-                color="secondary"
               />
-
               {touched.email && errors.email && (
                 <FormHelperText error id="standard-weight-helper-text-email-login">
                   {errors.email}
@@ -99,9 +77,7 @@ const AuthLogin = ({ ...others }) => {
             </FormControl>
 
             <FormControl fullWidth error={Boolean(touched.password && errors.password)} sx={{ ...theme.typography.customInput }}>
-              <InputLabel htmlFor="outlined-adornment-password-login" color="secondary">
-                Password
-              </InputLabel>
+              <InputLabel htmlFor="outlined-adornment-password-login">Password</InputLabel>
               <OutlinedInput
                 id="outlined-adornment-password-login"
                 type={showPassword ? 'text' : 'password'}
@@ -109,7 +85,6 @@ const AuthLogin = ({ ...others }) => {
                 name="password"
                 onBlur={handleBlur}
                 onChange={handleChange}
-                color="secondary"
                 endAdornment={
                   <InputAdornment position="end">
                     <IconButton
@@ -118,7 +93,6 @@ const AuthLogin = ({ ...others }) => {
                       onMouseDown={handleMouseDownPassword}
                       edge="end"
                       size="large"
-                      color="secondary"
                     >
                       {showPassword ? <Visibility /> : <VisibilityOff />}
                     </IconButton>
@@ -136,7 +110,7 @@ const AuthLogin = ({ ...others }) => {
             <Stack direction="row" alignItems="center" justifyContent="space-between" spacing={1}>
               <FormControlLabel
                 control={
-                  <Checkbox checked={checked} onChange={(event) => setChecked(event.target.checked)} name="checked" color="secondary" />
+                  <Checkbox checked={checked} onChange={(event) => setChecked(event.target.checked)} name="checked" color="primary" />
                 }
                 label="Remember me"
               />
@@ -152,16 +126,26 @@ const AuthLogin = ({ ...others }) => {
 
             <Box sx={{ mt: 2 }}>
               <AnimateButton>
-                <Button disableElevation disabled={isSubmitting} fullWidth size="large" type="submit" variant="contained" color="secondary">
-                  Sign in
-                </Button>
+                <Link to="/dashboard/organization-1/overview">
+                  <Button
+                    disableElevation
+                    disabled={isSubmitting}
+                    fullWidth
+                    size="large"
+                    type="submit"
+                    variant="contained"
+                    color="secondary"
+                  >
+                    Sign in
+                  </Button>
+                </Link>
               </AnimateButton>
             </Box>
           </form>
         )}
       </Formik>
-    </>
+    </div>
   );
 };
 
-export default AuthLogin;
+export default CreateProject;

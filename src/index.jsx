@@ -1,8 +1,7 @@
 import { createRoot } from 'react-dom/client';
-
-// third party
-import { configureStore } from '@reduxjs/toolkit';
+import { legacy_createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
+import {thunk} from 'redux-thunk';
 
 // project imports
 import App from './App';
@@ -30,7 +29,9 @@ import reportWebVitals from 'reportWebVitals';
 
 const container = document.getElementById('root');
 const root = createRoot(container); // createRoot(container!) if you use TypeScript
-const store = configureStore({ reducer });
+
+// Create the store with thunk middleware for async logic
+const store = legacy_createStore(reducer, applyMiddleware(thunk));
 
 // ==============================|| REACT DOM RENDER  ||============================== //
 

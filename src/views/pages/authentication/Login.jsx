@@ -10,15 +10,12 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 // project imports
 import AuthWrapper1 from '../AuthWrapper1';
 import AuthCardWrapper from '../AuthCardWrapper';
+import AuthLogin from './auth-forms/AuthLogin';
 import Logo from 'ui-component/Logo';
-import AuthRegister from '../authentication/auth-forms/AuthRegister';
-import AuthFooter from 'ui-component/cards/AuthFooter';
 
-// assets
+// ================================|| AUTH3 - LOGIN ||================================ //
 
-// ===============================|| AUTH3 - REGISTER ||=============================== //
-
-const Register = () => {
+const Login = () => {
   const downMD = useMediaQuery((theme) => theme.breakpoints.down('md'));
 
   return (
@@ -29,9 +26,9 @@ const Register = () => {
             <Grid item sx={{ m: { xs: 1, sm: 3 }, mb: 0 }}>
               <AuthCardWrapper>
                 <Grid container spacing={2} alignItems="center" justifyContent="center">
-                  <Grid item sx={{ mb: 3 }}>
-                    <Link to="#" aria-label="theme logo">
-                      <Logo />
+                  <Grid item sx={{ mb: 1 }}>
+                    <Link to="/" aria-label="logo">
+                      <Logo width="200" />
                     </Link>
                   </Grid>
                   <Grid item xs={12}>
@@ -39,7 +36,7 @@ const Register = () => {
                       <Grid item>
                         <Stack alignItems="center" justifyContent="center" spacing={1}>
                           <Typography color="secondary.main" gutterBottom variant={downMD ? 'h3' : 'h2'}>
-                            Sign up
+                            Welcome Back
                           </Typography>
                           <Typography variant="caption" fontSize="16px" textAlign={{ xs: 'center', md: 'inherit' }}>
                             Enter your credentials to continue
@@ -49,15 +46,16 @@ const Register = () => {
                     </Grid>
                   </Grid>
                   <Grid item xs={12}>
-                    <AuthRegister />
+                    <AuthLogin />
                   </Grid>
                   <Grid item xs={12}>
                     <Divider />
                   </Grid>
                   <Grid item xs={12}>
-                    <Grid item container direction="column" alignItems="center" xs={12}>
-                      <Typography component={Link} to="/pages/login/login3" variant="subtitle1" sx={{ textDecoration: 'none' }}>
-                        Already have an account?
+                    <Grid item container direction="row" alignItems="center" justifyContent="center" xs={12} gap={0.3}>
+                      <Typography>Don&apos;t have an account? </Typography>
+                      <Typography component={Link} to="/register" variant="subtitle1" sx={{ textDecoration: 'none' }} color="secondary">
+                        Register
                       </Typography>
                     </Grid>
                   </Grid>
@@ -66,12 +64,9 @@ const Register = () => {
             </Grid>
           </Grid>
         </Grid>
-        <Grid item xs={12} sx={{ m: 3, mt: 1 }}>
-          <AuthFooter />
-        </Grid>
       </Grid>
     </AuthWrapper1>
   );
 };
 
-export default Register;
+export default Login;
